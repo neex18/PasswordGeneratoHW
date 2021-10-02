@@ -1,20 +1,21 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function makePassword() {
+function createPassword() {
  
   
-console.log(makePassword)
+console.log(createPassword)
   
 
   var pLength =  prompt("Please input the length of your desired password, from 8-128");
 console.log(prompt)
-  if (pLength >= 8 && pLength <= 128) {
+  
+if (pLength >= 8 && pLength <= 128) {
 
-    var numbers = confirm("Use numbers?    'ok' for yes, 'cancel' for no");
-    var lowerCase = confirm("Use lowercase?    'ok' for yes, 'cancel' for no");
-    var upperCase = confirm("Use uppercase?    'ok' for yes, 'cancel' for no");
-    var specialCharacters = confirm("Use special characters?    'ok' for yes, 'cancel' for no");
+    var numbers = confirm("Contain numbers?    'ok' for yes, 'cancel' for no");
+    var lowerCase = confirm("Contain lowercase?    'ok' for yes, 'cancel' for no");
+    var upperCase = confirm("Conatin uppercase?    'ok' for yes, 'cancel' for no");
+    var specialCharacters = confirm("Contain special characters?    'ok' for yes, 'cancel' for no");
   }
     
   if (pLength < 8 || pLength > 128) {
@@ -71,7 +72,7 @@ return password
 
 
 function writePassword() {
-  var password = makePassword();
+  var password = createPassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
