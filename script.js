@@ -1,33 +1,80 @@
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
+var generateBtn = document.querySelector("#generate");
 
+// Write password to the #password input
+function makePassword() {
+ 
+  
+console.log(makePassword)
+  
 
-// Prompt 
-// Password length between 8-128 characters.
-// True or False: Include; lowercase, uppercase, numeric, and/or special character
+  var pLength =  prompt("Please input the length of your desired password, from 8-128");
+console.log(prompt)
+  if (pLength >= 8 && pLength <= 128) {
 
-var lowEnd = 8;
-var highEnd = 128;
-var arr = [];
-while(lowEnd <= highEnd){
- arr.push(lowEnd++);
+    var numbers = confirm("Use numbers?    'ok' for yes, 'cancel' for no");
+    var lowerCase = confirm("Use lowercase?    'ok' for yes, 'cancel' for no");
+    var upperCase = confirm("Use uppercase?    'ok' for yes, 'cancel' for no");
+    var specialCharacters = confirm("Use special characters?    'ok' for yes, 'cancel' for no");
+  }
+    
+  if (pLength < 8 || pLength > 128) {
+    return writePassword()
+  }
+
+ 
+  
+  if (numbers) {
+      var numbers = ["987654321"]
+    }
+  
+if (numbers === false) {
+  var numbers = [""]
 }
-console.log(arr);
 
-var upCase = true
-var lowCase = true
-var numeric = true
-var specCharc = true
+    if (lowerCase) {
+     var lowerCase = ["abcdefghijklmnopqrstuvwxyz"]
+    }
+
+if (lowerCase === false) {
+  var lowerCase = [""]
+}
+
+    if (upperCase) {
+     var upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+}
+
+if (upperCase === false) {
+  var upperCase = [""]
+}
+
+    if (specialCharacters) {
+     var specialCharacters = ["!@#$%^&*()"];
+    }
+
+    if (specialCharacters === false) {
+      var specialCharacters = [""]
+    }
+   
+  
+  var randomizer = numbers + lowerCase + upperCase + specialCharacters;
+  var password = "";
+
+
+  for (var i = 0; i < pLength; i++) {
+    var newPassword = randomizer[Math.floor(Math.random() * randomizer.length)];
+    password += newPassword;
+}
+
+
+return password
+}
+
+
+function writePassword() {
+  var password = makePassword();
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+}
+
+
+generateBtn.addEventListener("click", writePassword);
